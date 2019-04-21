@@ -2,11 +2,10 @@
 
 require_once('../vendor/autoload.php');
 include ('./php/db_connect.php');
-include ('./php/rsa_keys.php');
 require_once ('./php/server_queries.php');
 
 use Mailgun\Mailgun;
-$mg = Mailgun::create('3f25ae213edbd460176e350d73d0dc48-3fb021d1-ecd40793');
+$mg = Mailgun::create($_ENV['MAILGUN_API_KEY']);
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

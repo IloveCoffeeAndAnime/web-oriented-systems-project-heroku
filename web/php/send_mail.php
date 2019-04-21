@@ -7,14 +7,13 @@
  */
 
 require_once ('Urls.php');
-const DOMAIN = "sandboxd3c973ca01c84f3dbcd5d4204164ebbc.mailgun.org";
 const FROM_NAME = 'Сервіс запису на курсові та дипломні';
 
 function send_email($mg,$to_name,$to_email,$subject,$text){
     $success = true;
     try{
-        $res = $mg->messages()->send(DOMAIN, [
-            'from'    => FROM_NAME.' <mailgun@'.DOMAIN.'>',
+        $res = $mg->messages()->send($_ENV['MAILGUN_DOMAIN'], [
+            'from'    => FROM_NAME.' <mailgun@'.$_ENV['MAILGUN_DOMAIN'].'>',
             'to'      => $to_name.' <'.$to_email.'>',
             'subject' => $subject,
             'text'    => $text
