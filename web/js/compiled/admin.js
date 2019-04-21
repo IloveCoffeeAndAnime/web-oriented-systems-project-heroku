@@ -9970,14 +9970,14 @@ function showThemes(data){
             load:function(template){
                 console.log(template);
                 data['themes'].forEach(function(element){
-                    $search_result_content.append(template.render({role:data['group'],theme:element,STATUSES:data['STATUSES']}));
+                    $search_result_content.append(template.render({role:data['group'],theme:element,STATUSES:data['STATUSES'],theme_enroll_opened:data['theme_enroll_opened']}));
                 });
             }
         });
     }
     else{
         data['themes'].forEach(function(element){
-            $search_result_content.append(loadedTwig.render({role:data['group'],theme:element,STATUSES:data['STATUSES']}));
+            $search_result_content.append(loadedTwig.render({role:data['group'],theme:element,STATUSES:data['STATUSES'],theme_enroll_opened:data['theme_enroll_opened']}));
         });
     }
 }

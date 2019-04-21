@@ -310,7 +310,8 @@ function post_search_theme_by_name($app,$input){
     $user_login = get_session_user_login($app);
     $themes_arr = db_get_theme_by_name_part($app,$user_group_id,$user_login,$input);
     $statuses = (new Department_Statuses())->getConstants();
-    return $app->json(array('group'=>User_Groups::getUserGroupName($user_group_id),'themes'=>$themes_arr,'STATUSES'=>$statuses));
+    $enroll_opened = isThemeEnrollOpened();
+    return $app->json(array('group'=>User_Groups::getUserGroupName($user_group_id),'themes'=>$themes_arr,'STATUSES'=>$statuses,'theme_enroll_opened'=>$enroll_opened));
 }
 
 function get_search_all_themes($app){
@@ -318,7 +319,8 @@ function get_search_all_themes($app){
     $group_id = get_session_user_group($app);
     $statuses = (new Department_Statuses())->getConstants();
     $themes_arr = db_get_all_faculty_themes($app,$login,$group_id);//db_get_faculty_themes($app,$group_id,$login);
-    return $app->json(array('group'=>User_Groups::getUserGroupName($group_id),'themes'=>$themes_arr,'STATUSES'=>$statuses));
+    $enroll_opened = isThemeEnrollOpened();
+    return $app->json(array('group'=>User_Groups::getUserGroupName($group_id),'themes'=>$themes_arr,'STATUSES'=>$statuses,'theme_enroll_opened'=>$enroll_opened));
 }
 
 function post_search_filters($app,$input){
@@ -327,7 +329,8 @@ function post_search_filters($app,$input){
     $statuses = (new Department_Statuses())->getConstants();
     $themes = db_get_filtered_themes($app,$login,$group_id,$input['type'],$input['course'],$input['teacher'],$input['department'],$input['speciality'],$input['available'],$input['approve_status'],$input['name']);
   //  $themes = db_get_faculty_themes_filtered($app,$login,$group_id,$input['type'],$input['course'],$input['teacher'],$input['department'],$input['speciality'],$input['available'],$input['approve_status'],$input['name']);
-    return $app->json(array('group'=>User_Groups::getUserGroupName($group_id),'themes'=> $themes,'STATUSES'=>$statuses));
+    $enroll_opened = isThemeEnrollOpened();
+    return $app->json(array('group'=>User_Groups::getUserGroupName($group_id),'themes'=> $themes,'STATUSES'=>$statuses,'theme_enroll_opened'=>$enroll_opened));
 }
 
 function post_student_enroll($app,$mg, $theme_id){

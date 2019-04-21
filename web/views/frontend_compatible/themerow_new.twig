@@ -28,7 +28,7 @@
         {% include '../templates/theme_info_row.twig' with  { 'title': 'Виконує:', 'info':theme.student} %}
         <div class="btn-div">
             <button class="btn-info">Анотація</button>
-            {% if role == 'Студент' and theme.availiable == true %}
+            {% if role == 'Студент' and theme.availiable == true and theme_enroll_opened == true %}
                     <button type="submit" class="btn-enroll student-enroll-btn" name="theme_id" value="{{ theme.theme_id|default(0) }}">Записатися</button>
             {% endif %}
             {% if role == 'Працівник кафедри' %}
