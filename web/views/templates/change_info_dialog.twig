@@ -1,0 +1,37 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="changeInfoDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="themeDialogTitle">Змінити пароль</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    {#<input type="text" value="{{ currentPass|default('pass') }}" id="currentPasswordValue" style="display: none">#}
+                    {#<input type="text" value="{{ currentLogin|default('login') }}" id="currentLoginValue" style="display: none">#}
+                    {#<div class="form-group">#}
+                        {#<label for="currentLogin">Логін:</label>#}
+                        {#<input type="text" class="form-control" id="currentLogin">#}
+                    {#</div>#}
+                    {#<div class="form-group">#}
+                        {#<label for="currentPassword">Поточний пароль:</label>#}
+                        {#<input type="password" class="form-control" id="currentPassword">#}
+                    {#</div>#}
+                    <div class="form-group">
+                        <label for="newPassword">Новий пароль:</label>
+                        <input type="password" class="form-control" id="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPasswordConfirm">Повторіть пароль:</label>
+                        <input type="password" class="form-control" id="newPasswordConfirm">
+                    </div>
+                </form>
+                <div class="error-message" id="warning-message"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Скасувати</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="changeInfoBtn" disabled>Зберегти</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

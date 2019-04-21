@@ -1,0 +1,37 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="themeDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="themeDialogTitle">Нова тема</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                  <div class="form-group">
+                      <label for="themeNameInput">Назва:</label>
+                      <input type="text" class="form-control" placeholder="введіть назву теми" id="themeNameInput">
+                      <span class="help-block text-danger" id="themeNameWarning"></span>
+                  </div>
+                  <div class="form-group">
+                      <label for="themeYearInput">Рік навчання:</label>
+                      <select class="form-control search-more-content" id="themeYearInput" >
+                          <option disabled selected value="0" class="def-search-filter-option" style="display:none">Оберіть рік</option>
+                          {% for i in themeYears|default([]) %}
+                              <option value={{i.value}}>{{ i.name }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="themeAnnotationInput">Анотація:</label>
+                      <textarea class="form-control" placeholder="введіть опис теми" id="themeAnnotationInput"></textarea>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Скасувати</button>
+                <button type="button" class="btn btn-success" id="createThemeBtn" disabled style="display: none">Cтворити</button>
+                <button type="button" class="btn btn-warning" id="editThemeBtn" disabled style="display: none">Зберегти</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

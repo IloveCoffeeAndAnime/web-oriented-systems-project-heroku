@@ -1,0 +1,17 @@
+<div class="user-holder">
+    <div class="name-holder">{{user.name}}</div>
+    <div class="info-holder">
+        {{ include('templates/info_row.twig', { 'title': 'Роль','info': user.role}) }}
+        {{ include('templates/info_row.twig', { 'title': 'Факультет','info': user.faculty}) }}
+        {% if user.role_id==ROLES.STUDENT_ID %}
+            {{ include('templates/info_row.twig', { 'title': 'Спеціальність','info': user.speciality}) }}
+            {{ include('templates/info_row.twig', { 'title': 'Курс','info': user.course}) }}
+        {% elseif user.role_id==ROLES.TEACHER_ID or user.role_id==DEPARTMENT_WORKER_ID %}
+            {{ include('templates/info_row.twig', { 'title': 'Спеціальність','info': user.department}) }}
+        {%  endif %}
+        {{ include('templates/info_row.twig', { 'title': 'Електронна пошта','info': user.email}) }}
+        <div class="btn-holder">
+            <button class="delete-user" type="button" value="{{ user.login }}">Видалити користувача</button>
+        </div>
+    </div>
+</div>

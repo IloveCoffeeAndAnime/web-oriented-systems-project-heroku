@@ -1,0 +1,34 @@
+<div class="teacher-theme-holder">
+    <div class="teacher-theme-theme">
+        <div class="theme">{{ theme.theme }}</div>
+        <div class="info">
+            {% if theme.status == STATUSES.TAKEN %}
+                <div class="taken">Взято</div>
+            {% elseif theme.status ==STATUSES.APPROVED %}
+                <div class="approved">Схвалено</div>
+            {% elseif theme.status == STATUSES.NOT_DECIDED %}
+                <div class="waiting">Розглядається</div>
+            {% elseif theme.status == STATUSES.NOT_APPROVED%}
+                <div class="not_approved">Відхилено</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="teacher-theme-info">
+        <div class="holder">
+            {% include '../templates/theme_info_row.twig' with {'title':'Рік: ','info':theme.year} %}
+            {% if theme.status == STATUSES.TAKEN %}
+                {% include '../templates/theme_info_row.twig' with {'title':'Виконує:','info':theme.student} %}
+            {% endif %}
+            <div class="annotation">
+                <span>Анотація</span>
+                <div class="ann-holder">{{ theme.info }}</div>
+            </div>
+            <div class="management">
+                {% if (theme.status ==STATUSES.NOT_DECIDED or theme.status ==STATUSES.NOT_APPROVED )%}
+                    <button class="edit edit-theme-btn" data-toggle="modal" value="{{ theme.theme_id|default('') }}">Редагувати</button>
+                    <button class="delete del-theme-btn" data-toggle="modal" value="{{ theme.theme_id|default('') }}">Видалити</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

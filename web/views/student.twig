@@ -1,0 +1,28 @@
+{% include 'commons/header.twig' %}
+
+{% include 'templates/page_header.twig' %}
+
+<div class="content">
+    <div class="row">
+        <div class="search col-md-8">
+            {{ include('templates/search_block.twig', {'role' : role|default('Студент'), 'themes':themes|default([]),'theme_enroll_opened':theme_enroll_opened|default(false)}) }}
+        </div>
+        <div class="info col-md-4">
+            {{ include('templates/info_block.twig', { 'name':name|default('_'), 'role': role|default('Студент'), 'faculty' : faculty|default('_') , 'speciality' : speciality|default('_'), 'student_theme':student_theme|default('_'),'theme_type':theme_type|default('_'),'theme_teacher':theme_teacher|default('_'),'enroll_theme_id':enroll_theme_id,'theme_enroll_opened':theme_enroll_opened|default(false) }) }}
+        </div>
+    </div>
+</div>
+
+{#{{ include ('templates/change_login_dialog.twig',{'currentLogin':student_username} ) }}#}
+{#{{ include ('templates/change_email.twig',{'currentEmail': email}) }}#}
+{#{{ include ('templates/ok_dialog.twig',{'modal_id':'changeEmailSentOkModal','modal_tiltle':'Надіслано лист підтвердження','modal_text':'На вказану пошту надіслано лист підтвердження. Будь ласка, перевірте Вашу поштову скриньку.'})}}#}
+
+{{ include ('templates/ok_dialog.twig',{'modal_id':'enrollThemeOkModal','modal_tiltle':'Запис на тему','modal_text':'Вас успішно записано на тему.'}) }}
+{{ include ('templates/ok_dialog.twig',{'modal_id':'refuseThemeOkModal','modal_tiltle':'Відмова від теми','modal_text':'Вас успішно виписано з теми.'}) }}
+
+{#{{ include ('templates/confirm_dialog.twig',{'dialogId':'confSendPasswordChangeDialog','title':'Підтвердження зміни паролю','message':'На вашу електронну пошту надійде лист з посиланням для зміни паролю.','actionBtClass':'btn-success','actionBtnId':'confSendChangePassBtn','actionName':'Підтвердити'}) }}#}
+{#{{ include ('templates/ok_dialog.twig',{'modal_id':'passwordChangeSentOkModal','modal_tiltle':'Надіслано лист про зміну паролю','modal_text':'Лист для зміни паролю надіслано. Будь ласка, перевірте Вашу поштову скриньку.'})}}#}
+
+{{ include ('commons/common_dialogs.twig',{'currentLogin':student_username,'currentEmail': email}) }}
+
+{% include 'commons/footer.twig' %}

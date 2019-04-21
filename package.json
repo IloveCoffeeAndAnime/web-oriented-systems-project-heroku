@@ -1,0 +1,17 @@
+{
+  "name": "php-getting-started",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "start": "grunt default",
+  "author": "",
+  "dependencies": {
+    "brfs": "^1.4.3",
+    "fs-js": "^1.0.6",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^4.0.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "twig": "^1.13.2"
+  }
+}

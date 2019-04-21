@@ -1,0 +1,73 @@
+{% include 'commons/header.twig' %}
+{% include 'templates/page_header.twig' %}
+<div class="content">
+    <div class="row">
+        <div class="search col-md-8">
+            {#<div><button id="tesSndEmail">Send email</button></div>#}
+            <div class="inner-title">Користувачі</div>
+            <div class="inner-search">
+                <form>
+                    <input id="search-input-users" name="name_search">
+                    <input type="button" id="search-button-users" value="Пошук">
+                </form>
+            </div>
+            <div class="search-btn-holder">
+                <button id="search-more-btn">Розширений пошук</button>
+            </div>
+            <div class="search-more-holder">
+                {{ include('templates/search_row.twig', { 'title': 'Роль:','placeholder':'Курс','row_id':'role-filter', 'info':roles|default([])}) }}
+                {{ include('templates/search_row.twig', { 'title': 'Факультет:','placeholder':'Факультет','row_id':'faculty-filter', 'info':faculties|default([])}) }}
+                {{ include('templates/search_row.twig', { 'title': 'Спеціальність:','placeholder':'Спеціальність','row_id':'specs-filter', 'info':specs|default([]) }) }}
+                {{ include('templates/search_row.twig', { 'title': 'Рік:','placeholder':'Рік','row_id':'year-filter', 'info':years|default([]) }) }}
+                {{ include('templates/search_row.twig', { 'title': 'Кафедра:','placeholder':'Кафедра','row_id':'departs-filter', 'info':departs|default([])}) }}
+                <div>
+                    <button class="btn-off" id="drop-filters-btn-users">Скинути фільтри</button>
+                    <button class="btn-s" id="search-filter-btn-users">Пошук</button>
+                </div>
+            </div>
+            <div class="search-box">
+                <div class="search-box-info">Знайдено результатів: <span id="search-res-amount-span">{{ search_amount|default(0) }}</span></div>
+                <div class="search-box-content" id="search-result-content-users">
+                    {% for user in users|default([]) %}
+                        {{ include('templates/user_row.twig', { 'user': user}) }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="info col-md-4">
+            {{ include('templates/info_block.twig', { 'name':name|default('Петров Петро Петрович'), 'role': role|default('Адміністратор')})}}
+            <div class="admin" id="admin-func-div">
+                {% if theme_enroll_opened|default(false) == false %}
+                    <button class="open-enrolling" id="open-theme-enroll-btn">Відкрити запис</button>
+                {% else %}
+                    <button class="close-enrolling" id="close-theme-enroll-btn">Закрити запис</button>
+                {% endif %}
+                <button class="add-user" id="createNewUserBtn">Додати користувача</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{  include ('templates/user_create_dialog.twig',{'userRoles':roles|default([]),
+                                                    'faculties':faculties|default([]),
+                                                    'specialities':specialities|default([]),
+                                                    'years':years|default([]),
+                                                    'departments':departments|default([])}) }}
+
+{#{% include 'templates/change_info_dialog.twig'%}#}
+{#{{ include ('templates/change_login_dialog.twig',{'currentLogin':admin_username} ) }}#}
+
+{% include 'templates/created_user_show.twig' %}
+{{ include ('templates/confirm_dialog.twig',{'dialogId':'confDelUserDialog','title':'Видалити користувача','message':'Дійсно видалити цього користувача?','actionBtnId':'delUserBtn','actionBtClass':'btn-danger','actionName':'Видалити'}) }}
+{#{% include 'commons/footer.twig' %}#}
+
+{{ include ('commons/common_dialogs.twig',{'currentLogin':admin_username,'currentEmail': email}) }}
+
+<!--Bootsrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!--Own JavaScript -->
+<!--<script type="text/javascript"  src="assets/js/main.js"> </script>-->
+<script type="text/javascript"  src="/web-oriented-systems-project/web/js/compiled/admin.js"> </script>
+</body>
+</html

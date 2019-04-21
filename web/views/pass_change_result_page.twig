@@ -1,0 +1,33 @@
+{% include 'commons/header.twig' %}
+{% include 'templates/page_header_simple.twig' %}
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <h2>Зміна паролю</h2>
+        </div>
+        <div class="row">
+            {% if success==true %}
+                <div class="alert alert-success font-medium">Пароль успішно змінено</div>
+            {% else %}
+                <div class="alert alert-danger font-medium">Не вдалося здійснити зміну паролю. Будь ласка, спробуйте повторити операцію пізніше</div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <p class="form-control-static">Щоб повернутись на сторінку входу в систему, перейдть за поcиланням:</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <a href="{{ url('login') }}" class="btn btn-default">Вхід в систему</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html

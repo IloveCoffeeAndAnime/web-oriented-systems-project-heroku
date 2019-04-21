@@ -1,0 +1,34 @@
+{% include 'commons/header.twig' %}
+{% include 'templates/page_header_simple.twig' %}
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <h2>Підтвердження електронної пошти</h2>
+        </div>
+        <div class="row">
+            {% if success==true %}
+                <div class="alert alert-success font-medium">Електронну пошту успішно підтверджено</div>
+            {% else %}
+                <div class="alert alert-danger"><h5>Не вдалося здійснити підтвердження електронної пошти. Будь ласка, спробуйте повторити операцію пізніше</h5></div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <p class="form-control-static">Щоб повернутись на основну сторінку, перейдть за поcиланням</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <a href="{{ url('user_page') }}" class="btn btn-default">Основна сторінка</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html

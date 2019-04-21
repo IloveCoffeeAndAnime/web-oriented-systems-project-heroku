@@ -1,0 +1,31 @@
+{% include 'commons/header.twig' %}
+<div class="container_for_form">
+    <form action="">
+        <div class="container">
+            <h1 class="center-pos">Вхід на сервіс запису на курсові та дипломні</h1>
+            <p>Заповніть форму щоб зайти.</p>
+            <hr class="line-look">
+            <div class="margined-div">
+                <label for="login"><b>Логін</b></label>
+                <input type="text" placeholder="Enter login" name="login" id='login_input_login'>
+                <div class="err-color" id="login_message_div"></div>
+            </div>
+
+            <div class="margined-div">
+                <label for="psw"><b>Пароль</b></label>
+                <input type="password" placeholder="Enter Password" name="psw"  id='password_input_login'>
+                <div class="err-color" id="password_message_div"></div>
+            </div>
+
+            <button type="button" class="loginbtn" id="login_btn" disabled>Вхід</button>
+        </div>
+
+        <div class="container signup">
+            {#<p>Ще не зареєстрований? <a class="ref-color" href="{{ url('register') }}"> Реєстрація </a></p>#}
+        </div>
+    </form>
+
+</div>
+{#</body>#}
+{#</html>#}
+{% include 'commons/footer.twig' %}

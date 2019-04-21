@@ -1,0 +1,81 @@
+@import "constants";
+*{
+  box-sizing: border-box
+}
+
+//.select_faculty_and_kaf_hide{
+//  display:none;
+//}
+
+.hide-elem{
+  display:none;
+}
+
+.container {
+  padding: 16px;
+
+  width: 50%;
+  margin: 0 auto ;
+}
+.center-pos{
+  position:center;
+}
+input[type=text], input[type=password],select {
+  width: 100%;
+  padding: 15px;
+  //margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.line-look {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.registerbtn, .loginbtn {
+  background-color: @header_color_saz;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:disabled, .loginbtn:disabled{
+  background-color:lighten(@header_color_saz,10%);
+}
+
+.loginbtn:enabled:hover{
+  background-color:darken(@header_color_saz,10%);
+}
+
+.registerbtn:enabled:hover{
+  background-color:darken(@header_color_saz,10%);
+}
+
+
+.ref-color {
+  color: dodgerblue;
+}
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.margined-div{
+  margin: 5px 0 22px 0;
+}
+
+.err-color{
+  color:@err_message_color;
+}

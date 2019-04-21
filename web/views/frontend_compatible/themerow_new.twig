@@ -1,0 +1,48 @@
+<div class="theme-holder">
+    <div class="theme-inner">
+        <div class="theme">{{ theme.theme }}</div>
+        <div class="teacher">{{ theme.teacher }}</div>
+        {% if role == 'Студент'%}
+            {% if theme.availiable == true%}
+                <div class="aval available">Доступно</div>
+            {% else %}
+                <div class="aval unavailable">Недоступно</div>
+            {% endif %}
+        {% elseif role == 'Працівник кафедри' %}
+            {% if theme.status == STATUSES.TAKEN  %}
+                <div class="status taken">Взято</div>
+            {% elseif theme.status == STATUSES.APPROVED%}
+                <div class="status approved">Схвалено</div>
+            {% elseif theme.status == STATUSES.NOT_DECIDED %}
+                <div class="status waiting">Розглядається</div>
+            {% elseif theme.status == STATUSES.NOT_APPROVED%}
+                <div class="status not_approved">Відхилено</div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="theme-more">
+        {% include '../templates/theme_info_row.twig' with { 'title': 'Тип роботи:', 'info':theme.type|default('_')} %}
+        {% include '../templates/theme_info_row.twig' with  { 'title': 'Факультет:', 'info':theme.faculty} %}
+        {% include '../templates/theme_info_row.twig' with  { 'title': 'Кафедра:', 'info':theme.department} %}
+        {% include '../templates/theme_info_row.twig' with  { 'title': 'Рік навчання:', 'info':theme.year} %}
+        {% include '../templates/theme_info_row.twig' with  { 'title': 'Виконує:', 'info':theme.student} %}
+        <div class="btn-div">
+            <button class="btn-info">Анотація</button>
+            {% if role == 'Студент' and theme.availiable == true %}
+                {#<form method="post" action="/web-oriented-systems-project/web/student-page/enroll/">#}
+                    <button type="submit" class="btn-enroll student-enroll-btn" name="theme_id" value="{{ theme.theme_id|default(0) }}">Записатися</button>
+                {#</form>#}
+            {% endif %}
+            {% if role == 'Працівник кафедри' %}
+                {% if theme.status == STATUSES.NOT_DECIDED or theme.status == STATUSES.NOT_APPROVED %}
+                    <button class="btn-enroll btn-approve" type="button" value="{{ theme.theme_id|default(0) }}">Схвалити</button>
+                {% elseif theme.status == STATUSES.APPROVED %}
+                    <button class="btn-cancel btn-disapprove" type="button" value="{{ theme.theme_id|default(0) }}">Відхилити</button>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="annotation" style="display: none">
+            <div class="theme-info-div">{{ theme.info }}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="info-name">{{ name }}</div>
+<div class="info-holder">
+    {{ include('templates/info_row.twig', { 'title': 'Роль:', 'info':role}) }}
+    {%  if role != 'Адміністратор' %}
+    {{ include('templates/info_row.twig', { 'title': 'Факультет:', 'info':faculty}) }}
+    {% endif %}
+    {% if role == 'Викладач'  or role == 'Працівник кафедри'%}
+    {{ include('templates/info_row.twig', { 'title': 'Кафедра:', 'info':department}) }}
+    {% elseif role == 'Студент'%}
+        {{ include('templates/info_row.twig', { 'title': 'Спеціальність:', 'info':speciality}) }}
+        {{ include('templates/info_row.twig', { 'title': 'Курс:', 'info':student_course}) }}
+        {#{{ include('templates/info_row.twig', { 'title': 'Тема роботи:', 'info':student_theme}) }}#}
+        {{ include('templates/info_row_with_id.twig', { 'title': 'Тема роботи:', 'info':student_theme,'infoId':'studThemeInfo'}) }}
+        {{ include('templates/info_row.twig', { 'title': 'Тип роботи:', 'info':theme_type}) }}
+        {#{{ include('templates/info_row.twig', { 'title': 'Викладач:', 'info':theme_teacher}) }}#}
+        {{  include('templates/info_row_with_id.twig', { 'title': 'Викладач:', 'info':theme_teacher,'infoId':'studThemeTeacher'}) }}
+        <div class="info-inner" id="refuseBtnHolder">
+        {% if enroll_theme_id is defined and enroll_theme_id is not null and theme_enroll_opened == true %}
+                {#<form method="post" action="{{ url('refuse-theme') }}" class="width-100">#}
+                    <button type="button" name="theme_id" value="{{ enroll_theme_id|default(0) }}" class="width-100 refuseThemeBtn">Виписатись</button>
+                {#</form>#}
+        {% endif %}
+        </div>
+    {% endif %}
+</div>

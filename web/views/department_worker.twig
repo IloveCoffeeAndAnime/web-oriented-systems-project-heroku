@@ -1,0 +1,23 @@
+{% include 'commons/header.twig' %}
+{% include 'templates/page_header.twig' %}
+
+<div class="content">
+    <div class="row">
+        <div class="search col-md-8">
+            {{ include('templates/search_block.twig', {'role' : role|default('Працівник кафедри'), 'themes':themes|default([]),'courses':courses|default([]), 'departs':departs|default([]),'specs':specs|default([]),'STATUSES':STATUSES,'theme_enroll_opened':theme_enroll_opened }) }}
+        </div>
+        <div class="info col-md-4">
+            {{ include('templates/info_block.twig', { 'name':name|default('Петров Петро Петрович'), 'role': role|default('Працівник кафедри'), 'faculty' : faculty|default('_') , 'department' : department|default('_') })}}
+        </div>
+    </div>
+</div>
+
+{{ include ('templates/confirm_dialog.twig',{'dialogId':'confApproveThemeDialog','title':'Схвалити тему','message':'Дійсно схвалити цю тему?','actionBtnId':'approveThemeBtn','actionBtClass':'btn-success','actionName':'Схвалити'}) }}
+{{ include ('templates/confirm_dialog.twig',{'dialogId':'confDisappThemeDialog','title':'Відхилити тему','message':'Дійсно відхилити цю тему?','actionBtnId':'disappThemeBtn','actionBtClass':'btn-danger','actionName':'Відхилити'}) }}
+
+{#{% include 'templates/change_info_dialog.twig'%}#}
+{#{{ include ('templates/change_login_dialog.twig',{'currentLogin':worker_username} ) }}#}
+
+{{ include ('commons/common_dialogs.twig',{'currentLogin':worker_username,'currentEmail': email}) }}
+
+{% include 'commons/footer.twig' %}

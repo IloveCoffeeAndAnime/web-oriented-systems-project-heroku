@@ -1,0 +1,24 @@
+<div class="header">
+    <div class="header-title">
+        Запис на курсові та дипломні
+    </div>
+    <div class="div-flex-row width-250-px">
+        <div class="btn-group">
+            <button class="height-100-pers white-hoverable change-info-student dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Налаштування<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a id="openChangeLoginDialog">Змінити логін</a></li>
+                <li><a id="openChangeEmailDialog">Змінити пошту</a></li>
+                <li><a id="openChangeInfoDialog" data-toggle="modal" data-target="#confSendPasswordChangeDialog">Змінити пароль</a></li>
+            </ul>
+        </div>
+        <form class="log-out-student" action="{{ url('logout') }}"  method="get">
+            <input class="height-100-pers white-hoverable" type="submit" value="Вихід" >
+        </form>
+    </div>
+
+    {#<form class="change-info-student" onsubmit="return false">#}
+        {#<input type="submit" value="Налаштування" id="openChangeInfoDialog">#}
+    {#</form>#}
+    {#<a class="white-hoverable change-info-student dropdown-toggle" href="#">Налаштування</a>#}
+
+</div>

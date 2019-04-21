@@ -1,0 +1,36 @@
+<div class="inner-title">Перегляд тем</div>
+<div class="inner-search">
+    <form>
+        <input id="search-input" name="name_search" placeholder="Введіть назву теми">
+        <input type="button" id="search-button" value="Пошук">
+    </form>
+</div>
+<div class="search-btn-holder">
+    <button id="search-more-btn">Розширений пошук</button>
+</div>
+<div class="search-more-holder">
+    {{ include('templates/search_row.twig', { 'title': 'Тип роботи:','placeholder':'Тип','row_id':'type-filter', 'info':work_types|default([])}) }}
+    {{ include('templates/search_row.twig', { 'title': 'Курс:','placeholder':'Курс','row_id':'course-filter', 'info':courses|default([])}) }}
+    {{ include('templates/search_row.twig', { 'title': 'Викладач:','placeholder':'Викладач','row_id':'teacher-filter','info':'input'})}}
+    {{ include('templates/search_row.twig', { 'title': 'Кафедра:','placeholder':'Кафедра','row_id':'departs-filter', 'info':departs|default([])}) }}
+    {{ include('templates/search_row.twig', { 'title': 'Спеціальність:','placeholder':'Спеціальність','row_id':'specs-filter', 'info':specs|default([]) }) }}
+    {% if role=='Студент' %}
+        {{ include('templates/search_row.twig', { 'title': 'Доступність:','placeholder':'Доступність', 'row_id':'available-filter' ,'info':[{'value':'true','name':'Доступно'},{'value':'false','name':'Недоступно'}]}) }}
+    {% endif %}
+    {% if role=='Працівник кафедри' %}
+        {{ include('templates/search_row.twig', { 'title': 'Схвалення:','placeholder':'Схвалення', 'row_id':'approve-filter' ,'info':[{'value':STATUSES.TAKEN,'name':'Взято'},{'value': STATUSES.APPROVED,'name':'Схвалено'},{'value':STATUSES.NOT_DECIDED,'name':'Розглядається'},{'value': STATUSES.NOT_APPROVED,'name':'Відхилено'}]}) }}
+    {% endif %}
+    <div>
+        <button class="btn-off" id="drop-filters-btn">Скинути фільтри</button>
+        <button class="btn-s" id="search-filter-btn">Пошук</button>
+    </div>
+</div>
+<div class="search-box">
+    <div class="search-box-info">Знайдено результатів: <span id="search-res-amount-span">{{ search_amount|default(0) }}</span></div>
+    <div class="search-box-content" id="search-result-content">
+        {% for theme in themes %}
+            {{ include('templates/theme_row.twig', { 'theme': theme, 'role': role ,'theme_enroll_opened':theme_enroll_opened}) }}
+        {% endfor %}
+    </div>
+</div>
+<div class="pagination"></div>

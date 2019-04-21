@@ -1,0 +1,36 @@
+{% include 'commons/header.twig' %}
+
+{% include 'templates/page_header.twig' %}
+
+<div class="content">
+    <div class="row">
+        <div class="search col-md-8">
+            {{ include('templates/search_block.twig', {'role' : role|default('Викладач'), 'themes':themes|default([]),'work_types':work_types|default([]),'courses':courses|default([]), 'departs':departs|default([]),'specs':specs|default([]),'theme_enroll_opened':theme_enroll_opened|default(false) }) }}
+        </div>
+        <div class="info col-md-4">
+            {{ include('templates/info_block.twig', { 'name':name|default('Петров Петро Петрович'), 'role': role|default('Викладач'), 'faculty' : faculty|default('_') , 'department' : department|default('_') })}}
+            <div class="info-themes">
+                <p>Мої теми:</p>
+                <div class="info-themes-inner" id="allTeacherThemesHolder">
+                    {% if teacher_themes|default([{}]) == [] %}
+                        Наразі, жодної теми не створено
+                    {% else %}
+                        {% for t in teacher_themes|default([])%}
+                            {{ include('templates/teacher_theme.twig', {'theme':t}) }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <button class="theme-create" data-toggle="modal" id="openCreateThemeDialogBtn">Створити тему</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{  include ('templates/theme_dialog.twig',{'themeYears':courses|default([])}) }}
+{{ include ('templates/confirm_dialog.twig',{'dialogId':'confDelThemeDialog','title':'Видалити тему','message':'Дійсно видалити цю тему?','actionBtnId':'delThemeBtn','actionBtClass':'btn-danger','actionName':'Видалити'}) }}
+
+{#{% include 'templates/change_info_dialog.twig'%}#}
+{#{{ include ('templates/change_login_dialog.twig',{'currentLogin':teacher_username} ) }}#}
+{{ include ('commons/common_dialogs.twig',{'currentLogin':teacher_username,'currentEmail': email}) }}
+
+{% include 'commons/footer.twig' %}

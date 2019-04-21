@@ -1,0 +1,109 @@
+{% include 'commons/header.twig' %}
+<div class="container_for_form">
+    <form>
+        <div class="container">
+            <h1 class="center-pos">Реєстрація на сервіс запису на курсові</h1>
+            <p>Заповніть форму щоб створити аккаунт.</p>
+            <hr class="line-look">
+
+            <div class="margined-div">
+                <label for="reg_login_input"><b>Логін</b></label>
+                <input type="text" placeholder="Enter login" name="login" id="reg_login_input">
+                <div class="err-color" id="reg_login_msg"></div>
+            </div>
+
+            <div class="margined-div">
+                <label for="reg_name_input"><b>Ім'я</b></label>
+                <input type="text" placeholder="Enter name" name="name" id="reg_name_input">
+                <div class="err-color" id="reg_name_msg"></div>
+            </div>
+
+           <div class="margined-div">
+               <label for="reg_surname_input"><b>Прізвище</b></label>
+               <input type="text" placeholder="Enter surname" name="surname" id="reg_surname_input">
+               <div class='err-color' id="reg_surname_msg"></div>
+           </div>
+
+            <div class="margined-div">
+                <label for="reg_father_name_input"><b>По-батькові</b></label>
+                <input type="text" placeholder="Enter father name" name="father_name" id="reg_father_name_input">
+            </div>
+
+            <div class="margined-div" >
+                <label for="user_group_select"><b>Оберіть групу</b></label>
+                <select name="user_group" id ='user_group_select'>
+                {% for gr in groups %}
+                <option value="{{ gr.id }}">{{ gr.name }}</option>
+                {% else %}
+                <option value="0">undef</option>
+                {% endfor %}
+                </select>
+            </div>
+
+            {#<div class="margined-div" >#}
+                {#<label for="faculty_select"><b>Оберіть факультет</b></label>#}
+                {#<select  name="faculty" id="faculty_select">#}
+                    {#{% for fac in faculties %}#}
+                        {#<option value="{{ fac.faculty_id }}">{{ fac.name }}</option>#}
+                    {#{% else %}#}
+                        {#<option value="0">undef</option>#}
+                    {#{% endfor %}#}
+                {#</select>#}
+            {#</div>#}
+
+            <div class="margined-div" id="speciality_select_div" >
+                <label for="speciality_select"><b>Оберіть спеціальність</b></label>
+                <select name="speciality" id ='speciality_select'>
+                {% for spec in specialities %}
+                <option value="{{ spec.speciality_id }}">{{ spec.name }}</option>
+                {% else %}
+                <option value="0">undef</option>
+                {% endfor %}
+                </select>
+            </div>
+
+            <div class="margined-div" id="department_select_div" >
+                <label for="department_select"><b>Оберіть кафедру</b></label>
+                <select name="department" id ='department_select'>
+                {% for dep in departments  %}
+                <option value="{{ dep.department_id }}">{{ dep.name }}</option>
+                {% else %}
+                <option value="0">undef</option>
+                {% endfor %}
+                </select>
+            </div>
+
+            <div class="margined-div">
+                <label for="reg_email_input"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="reg_email_input">
+                <div class='err-color' id="reg_email_msg"></div>
+            </div>
+
+            <div class="margined-div">
+                <label for="reg_pass_input"><b>Пароль</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="reg_pass_input">
+                <div class='err-color' id="reg_pass_msg"></div>
+            </div>
+
+            <div class="margined-div">
+                <label for="reg_pass_repeat"><b>Повторіть пароль</b></label>
+                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="reg_pass_repeat">
+                <div class='err-color' id="reg_pass_msg_repeat"></div>
+            </div>
+
+            <hr class="line-look">
+
+            <button type="button" class="registerbtn" id="reg_btn" disabled>Зареєструвати мене</button>
+        </div>
+
+        <div class="container signin">
+            <p>Вже зареєстрований? <a href="{{ url('login') }}"> Вхід </a></p>
+        </div>
+    </form>
+
+
+
+</div>
+{#</body>#}
+{#</html>#}
+{% include 'commons/footer.twig' %}

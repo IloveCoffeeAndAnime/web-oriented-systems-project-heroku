@@ -1,0 +1,21 @@
+<div class="search-more-row">
+    <div class="search-more-title">{{ title }}</div>
+    {% if info == 'input' %}
+        {% if row_id is defined %}
+            <input class="search-more-content" type="text" placeholder="{{ placeholder }}" id="{{row_id}}" />
+        {% else %}
+            <input class="search-more-content" type="text" placeholder="{{ placeholder }}" />
+        {% endif %}
+     {% else %}
+         {% if row_id is defined %}
+            <select class="search-more-content" id="{{ row_id }}">
+         {% else %}
+            <select class="search-more-content">
+         {% endif %}
+        <option disabled selected value="0" class="def-search-filter-option" style="display:none"></option>
+            {% for i in info %}
+                <option value={{i.value}}>{{ i.name }}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+</div>

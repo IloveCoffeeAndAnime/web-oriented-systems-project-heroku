@@ -1,0 +1,24 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="changeEmailDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Змінити електронну пошту</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    {#<input type="text" value="{{ currentEmail|default('') }}" id="currentEmailValue" style="display: none">#}
+                    <div class="form-group">
+                        <label for="emailInput">Електронна пошта:</label>
+                        <input type="text" class="form-control" id="emailInput">
+                    </div>
+                </form>
+                <div class="error-message" id="warning-message-email"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Скасувати</button>
+                <button type="button" class="btn btn-success" id="submitChangeEmailBtn">Зберегти</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
