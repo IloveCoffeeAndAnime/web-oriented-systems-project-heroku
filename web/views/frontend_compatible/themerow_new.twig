@@ -29,9 +29,7 @@
         <div class="btn-div">
             <button class="btn-info">Анотація</button>
             {% if role == 'Студент' and theme.availiable == true %}
-                {#<form method="post" action="/web-oriented-systems-project/web/student-page/enroll/">#}
                     <button type="submit" class="btn-enroll student-enroll-btn" name="theme_id" value="{{ theme.theme_id|default(0) }}">Записатися</button>
-                {#</form>#}
             {% endif %}
             {% if role == 'Працівник кафедри' %}
                 {% if theme.status == STATUSES.NOT_DECIDED or theme.status == STATUSES.NOT_APPROVED %}

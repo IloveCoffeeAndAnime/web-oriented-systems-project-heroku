@@ -1,45 +1,7 @@
 /**
  * Created by chaika on 09.02.16.
  */
-var API_URL = "http://localhost/web-oriented-systems-project/web";
-
-// $.ajax = (($oldAjax) => {
-//     // on fail, retry by creating a new Ajax deferred
-//     function check(a,b,c){
-//         var shouldRetry = b != 'success' && b != 'parsererror';
-//         if( shouldRetry && --this.retries > 0 )
-//             setTimeout(() => { $.ajax(this) }, this.retryInterval || 100);
-//     }
-//     return settings => $oldAjax(settings).always(check)
-// })($.ajax);
-
-// function backendGetRetryOnError(url, callback) {
-//     $.ajax({
-//         url: API_URL + url,
-//         type: 'GET',
-//         tryCount : 0,
-//         retryLimit : 3,
-//         success: function(data){
-//             callback(null, data);
-//         },
-//         error: function(xhr, textStatus, errorThrown) {
-//             if (textStatus == 'timeout') {
-//                 this.tryCount++;
-//                 if (this.tryCount <= this.retryLimit) {
-//                     //try again
-//                     $.ajax(this);
-//                     return;
-//                 }
-//                 return;
-//             }
-//             if (xhr.status == 500) {
-//                 callback(new Error("Ajax Failed"));
-//             } else {
-//                 callback(new Error("Ajax Failed"));
-//             }
-//         },
-//     })
-// }
+var API_URL = "";
 
 function backendGet(url, callback) {
     $.ajax({

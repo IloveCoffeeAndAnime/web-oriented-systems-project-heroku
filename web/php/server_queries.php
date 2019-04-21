@@ -203,40 +203,40 @@ function get_user_page($app){
     }
 }
 
-function post_user_register($app,$request){
-    $user_info = array(
-            'login' => $request->request->get('login'),
-            'users_group_id'  => $request->request->get('users_group_id'),
-            'department_id'  => $request->request->get('department_id'),
-            'speciality_id'  => $request->request->get('speciality_id'),
-            'password_hash'  => password_hash($request->request->get('password_hash'),PASSWORD_DEFAULT ),
-            'email'  => $request->request->get('email'),
-            'surname'  => $request->request->get('surname'),
-            'name' =>  $request->request->get('name'),
-            'father_name' =>  $request->request->get('father_name'),
-        );
-    if(db_is_login_in_db($app,$user_info['login'])){
-        return $app->json(array('message'=>'користувач з таким логіном вже існує','success'=>false,'error_type'=>'user_err','redirect_url'=>'http://localhost/web-oriented-systems-project/web/login/'));
-    }
-    if(db_is_email_in_db($app,$user_info['email'])){
-        return $app->json(array('message'=>'користувач з такою поштою вже існує','success'=>false,'error_type'=>'email_err','redirect_url'=>'http://localhost/web-oriented-systems-project/web/login/'));
-    }
-    db_add_user($app,$user_info);
-    begin_user_session($app,$user_info['login'],intval ($user_info['users_group_id']));
-    return $app->json(array('success'=>true,'redirect_url'=>'http://localhost/web-oriented-systems-project/web/user-page/'));
-}
+//function post_user_register($app,$request){
+//    $user_info = array(
+//            'login' => $request->request->get('login'),
+//            'users_group_id'  => $request->request->get('users_group_id'),
+//            'department_id'  => $request->request->get('department_id'),
+//            'speciality_id'  => $request->request->get('speciality_id'),
+//            'password_hash'  => password_hash($request->request->get('password_hash'),PASSWORD_DEFAULT ),
+//            'email'  => $request->request->get('email'),
+//            'surname'  => $request->request->get('surname'),
+//            'name' =>  $request->request->get('name'),
+//            'father_name' =>  $request->request->get('father_name'),
+//        );
+//    if(db_is_login_in_db($app,$user_info['login'])){
+//        return $app->json(array('message'=>'користувач з таким логіном вже існує','success'=>false,'error_type'=>'user_err','redirect_url'=>'http://localhost/web-oriented-systems-project/web/login/'));
+//    }
+//    if(db_is_email_in_db($app,$user_info['email'])){
+//        return $app->json(array('message'=>'користувач з такою поштою вже існує','success'=>false,'error_type'=>'email_err','redirect_url'=>'http://localhost/web-oriented-systems-project/web/login/'));
+//    }
+//    db_add_user($app,$user_info);
+//    begin_user_session($app,$user_info['login'],intval ($user_info['users_group_id']));
+//    return $app->json(array('success'=>true,'redirect_url'=>'http://localhost/web-oriented-systems-project/web/user-page/'));
+//}
 
 function post_user_login($app,$login,$password){
     $ps_hash = db_get_password_by_login($app,$login);
     if(is_null($ps_hash))
-        return $app->json(array('message'=>'no such user','success'=>false,'error_type'=>'user_err','redirect_url'=>'http://localhost/web-oriented-systems-project/web/login/'));
+        return $app->json(array('message'=>'no such user','success'=>false,'error_type'=>'user_err','redirect_url'=>Urls::SERVER_APP_URL.Urls::LOGIN_PAGE_ABSOLUTE));
     if(password_verify($password,$ps_hash)){
         $user_group = db_get_user_group_id($app,$login);
         begin_user_session($app,$login,$user_group);
-        return $app->json(array('message'=>'logged','success'=>true,'redirect_url'=>'http://localhost/web-oriented-systems-project/web/user-page/'));
+        return $app->json(array('message'=>'logged','success'=>true,'redirect_url'=>Urls::SERVER_APP_URL.Urls::USER_PAGE_ABSOLUTE));
     }
     else
-        return $app->json(array('message'=>'password not match','success'=>false,'error_type'=>'password_err','redirect_url'=>'http://localhost/web-oriented-systems-project/web/login/'));
+        return $app->json(array('message'=>'password not match','success'=>false,'error_type'=>'password_err','redirect_url'=>Urls::SERVER_APP_URL.Urls::LOGIN_PAGE_ABSOLUTE));
 }
 
 function get_user_logout($app){
