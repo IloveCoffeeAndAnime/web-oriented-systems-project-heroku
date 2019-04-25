@@ -70,6 +70,7 @@ function clearThemeDialog(){
     $('.create-user-form > .form-group > select.search-more-content').val(defOption);
     $userSpecialityInput.find('option:not(.def-search-filter-option)').remove();
     $userDepartInput.find('option:not(.def-search-filter-option)').remove();
+    $userYearInput.find('option:not(.def-search-filter-option)').remove();
     removeEmailErrorMessage();
 }
 
@@ -170,16 +171,22 @@ function changeInputs(){
 function changeSpecialityDepartmentInputs(facultyVal){
     $userSpecialityInput.find('option:not(.def-search-filter-option)').remove();
     $userDepartInput.find('option:not(.def-search-filter-option)').remove();
+    $userYearInput.find('option:not(.def-search-filter-option)').remove();
     $userSpecialityInput.val(defOption);
     $userDepartInput.val(defOption);
+    $userYearInput.val(defOption);
     let specialities = PageInfo.getFacultySpecs(facultyVal);
     let departments = PageInfo.getFacultyDepartment(facultyVal);
+    let years = PageInfo.getFacultyYears(facultyVal);
     Urls.onTwigTemplateLoad(Urls.Option,Urls.optionId,function(template){
         specialities.forEach(function(elem){
             $userSpecialityInput.append(template.render({value:elem['speciality_id'],name:elem['name']}));
         });
         departments.forEach(function(elem){
             $userDepartInput.append(template.render({value:elem['department_id'],name:elem['name']}));
+        });
+        years.forEach(function(elem){
+            $userYearInput.append(template.render({value:elem['year'],name:elem['year']}));
         });
     });
 }

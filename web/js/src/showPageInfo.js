@@ -5,6 +5,7 @@ let roles = [];
 let faculties = [];
 let specialities =[];
 let departments = [];
+let facs_years = [];
 
 // function initRoles(callback){
 //     API.getUserRoles(function(err,data){
@@ -61,6 +62,7 @@ function initSearchBlockInfo(callback){
             faculties = data['faculties'];
             specialities = data['specialities'];
             departments = data['departments'];
+            facs_years = data['facs_years'];
             callback(roles,faculties,specialities,departments);
         }
     });
@@ -69,6 +71,15 @@ function initSearchBlockInfo(callback){
 function getFacultySpecs(facultId){
     let res = [];
     specialities.forEach(function(elem){
+        if(elem['faculty_id'].toString()===facultId.toString())
+            res.push(elem);
+    });
+    return res;
+}
+
+function getFacultyYears(facultId){
+    let res = [];
+    facs_years.forEach(function(elem){
         if(elem['faculty_id'].toString()===facultId.toString())
             res.push(elem);
     });
@@ -117,3 +128,4 @@ exports.getFaculties = getFaculties;
 exports.getUserRoles = getUserRoles;
 exports.initSearchBlockInfo = initSearchBlockInfo;
 exports.isUndef = isUndef;
+exports.getFacultyYears = getFacultyYears;

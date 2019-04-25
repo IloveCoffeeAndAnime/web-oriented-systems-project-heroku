@@ -51,7 +51,7 @@
 {{  include ('templates/user_create_dialog.twig',{'userRoles':roles|default([]),
                                                     'faculties':faculties|default([]),
                                                     'specialities':specialities|default([]),
-                                                    'years':years|default([]),
+                                                    'years':|[],
                                                     'departments':departments|default([])}) }}
 
 {#{% include 'templates/change_info_dialog.twig'%}#}

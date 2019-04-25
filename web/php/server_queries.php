@@ -51,7 +51,8 @@ function get_teacher_page($app){
 //            $faculty_themes = db_get_all_faculty_themes($app,$login,$group_id);//db_get_faculty_themes($app,$group_id,$login);
             $dp = new Department_Statuses();
             $statuses=$dp->getConstants();
-            $years = year_to_corr_format(db_get_years($app));
+//            $years = year_to_corr_format(db_get_years($app));
+            $years = year_to_corr_format(db_get_faculty_years($app,$teacher_info['faculty_id']));
             $departs = departs_to_corr_format(db_get_user_fac_departs($app,$login,$group_id));
             $specs = specs_to_corr_format(db_get_user_fac_specs($app,$login,$group_id));
             $theme_types = toNameValueFormat(db_get_work_types($app),'type_id','name');
@@ -88,7 +89,8 @@ function get_department_worker_page($app){
             $worker_name = $depart_worker_info['surname'].' '.$depart_worker_info['name'].' '.$depart_worker_info['father_name'];
             $dp = new Department_Statuses();
             $statuses=$dp->getConstants();
-            $years = year_to_corr_format(db_get_years($app));
+//            $years = year_to_corr_format(db_get_years($app));
+            $years = year_to_corr_format(db_get_faculty_years($app,$depart_worker_info['faculty_id']));
             $departs = departs_to_corr_format(db_get_user_fac_departs($app,$login,$group_id));
             $specs=specs_to_corr_format(db_get_user_fac_specs($app,$login,$group_id));
 //            $faculty_themes = db_get_all_faculty_themes($app,$login,$group_id);
@@ -155,7 +157,8 @@ function get_student_page($app){
 //            $faculty_themes = db_get_all_faculty_themes($app,$user_login,$user_group_id);//db_get_faculty_themes($app,$user_group_id,$user_login);
             $student_theme = db_get_student_theme($app,$user_login);
             $student_theme_type = db_get_theme_type($app,$student_info['faculty_id'],$student_info['course_year']);
-            $years = year_to_corr_format(db_get_years($app));
+//            $years = year_to_corr_format(db_get_years($app));
+            $years = year_to_corr_format(db_get_faculty_years($app,$student_info['faculty_id']));
             $departs = departs_to_corr_format(db_get_user_fac_departs($app,$user_login,$user_group_id));
             $specs=specs_to_corr_format(db_get_user_fac_specs($app,$user_login,$user_group_id));
             $theme_types = toNameValueFormat(db_get_work_types($app),'type_id','name');
@@ -460,7 +463,8 @@ function get_sarch_block_info($app){
     $faculties = db_get_faculties($app);
     $specialities = db_get_specs_with_facs_ids($app);
     $departments = db_get_departs_with_facs_ids($app);
-    return $app->json(array('user_roles'=>$user_roles,'faculties'=>$faculties,'specialities'=>$specialities,'departments'=>$departments));
+    $facs_years = db_get_facs_and_years($app);
+    return $app->json(array('user_roles'=>$user_roles,'faculties'=>$faculties,'specialities'=>$specialities,'departments'=>$departments,'facs_years'=>$facs_years));
 }
 
 function get_users_no_admin($app){

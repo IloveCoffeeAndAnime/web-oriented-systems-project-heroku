@@ -20,11 +20,34 @@ function db_get_work_types($app){
 
 function db_get_years($app){
     $st = $app['pdo']->prepare('SELECT DISTINCT year
-	FROM public."FACULTY_YEARS";');
+	FROM public."FACULTY_YEARS" ORDER BY year;');
     $st->execute();
     $all_years = array();
     while($row=$st->fetch(PDO::FETCH_ASSOC)) {
         array_push( $all_years,$row['year']);
+    }
+    return $all_years;
+}
+
+function db_get_faculty_years($app,$facult_id){
+    $st = $app['pdo']->prepare('SELECT DISTINCT year
+	FROM public."FACULTY_YEARS" WHERE faculty_id=:id ORDER BY year;');
+    $st->execute(array('id'=>$facult_id));
+    $all_years = array();
+    while($row=$st->fetch(PDO::FETCH_ASSOC)) {
+        array_push( $all_years,$row['year']);
+    }
+    return $all_years;
+}
+
+function db_get_facs_and_years($app){
+    $st = $app['pdo']->prepare('SELECT DISTINCT faculty_id,year
+	FROM public."FACULTY_YEARS"
+	ORDER BY year;');
+    $st->execute();
+    $all_years = array();
+    while($row=$st->fetch(PDO::FETCH_ASSOC)) {
+        array_push( $all_years,array('faculty_id'=>$row['faculty_id'],'year'=>$row['year']));
     }
     return $all_years;
 }
