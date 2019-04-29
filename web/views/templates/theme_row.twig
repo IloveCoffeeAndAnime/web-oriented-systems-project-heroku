@@ -37,7 +37,7 @@
             {% if role == 'Працівник кафедри' %}
                 {% if theme.status == STATUSES.NOT_DECIDED or theme.status == STATUSES.NOT_APPROVED %}
                     <button class="btn-enroll btn-approve" type="button" value="{{ theme.theme_id|default(0) }}">Схвалити</button>
-                {% elseif theme.status == STATUSES.APPROVED %}
+                {% elseif theme.status == STATUSES.APPROVED or  theme.status == STATUSES.NOT_DECIDED%}
                     <button class="btn-cancel btn-disapprove" type="button" value="{{ theme.theme_id|default(0) }}">Відхилити</button>
                 {% endif %}
             {% endif %}
